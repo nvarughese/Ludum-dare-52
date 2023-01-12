@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/nathan/Documents/Ludum dare 52/Harvester/Harvester/Content/combine harvester left.png</File>
+    <File>C:/Users/nathan/Documents/Ludum dare 52/Harvester/Harvester/Content/combine harvester.png</File>
+    <File>C:/Users/nathan/Documents/Ludum dare 52/Harvester/Harvester/Content/Farmer.png</File>
+    <File>C:/Users/nathan/Documents/Ludum dare 52/Harvester/Harvester/Content/field.jpg</File>
+    <File>C:/Users/nathan/Documents/Ludum dare 52/Harvester/Harvester/Content/fieldpng.png</File>
+    <File>C:/Users/nathan/Documents/Ludum dare 52/Harvester/Harvester/Content/File.spritefont</File>
+    <File>C:/Users/nathan/Documents/Ludum dare 52/Harvester/Harvester/Content/game over.spritefont</File>
+    <File>C:/Users/nathan/Documents/Ludum dare 52/Harvester/Harvester/Content/grim reaper.png</File>
+    <File>C:/Users/nathan/Documents/Ludum dare 52/Harvester/Harvester/Content/tomato.png</File>
+    <File>C:/Users/nathan/Documents/Ludum dare 52/Harvester/Harvester/Content/vampire.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File>screen text.spritefont</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

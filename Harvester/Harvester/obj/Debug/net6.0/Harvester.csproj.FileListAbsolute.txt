@@ -1,0 +1,35 @@
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Harvester.exe
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Harvester.deps.json
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Harvester.runtimeconfig.json
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Harvester.dll
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Harvester.pdb
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\MonoGame.Framework.dll
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\runtimes\linux-x64\native\libopenal.so.1
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\runtimes\osx\native\libSDL2.dylib
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\runtimes\osx\native\libopenal.1.dylib
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\runtimes\win-x64\native\SDL2.dll
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\runtimes\win-x64\native\soft_oal.dll
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\runtimes\win-x86\native\SDL2.dll
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\runtimes\win-x86\native\soft_oal.dll
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\obj\Debug\net6.0\Harvester.csproj.AssemblyReference.cache
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\obj\Debug\net6.0\Harvester.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\obj\Debug\net6.0\Harvester.AssemblyInfoInputs.cache
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\obj\Debug\net6.0\Harvester.AssemblyInfo.cs
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\obj\Debug\net6.0\Harvester.csproj.CoreCompileInputs.cache
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\obj\Debug\net6.0\Harvester.csproj.CopyComplete
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\obj\Debug\net6.0\Harvester.dll
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\obj\Debug\net6.0\refint\Harvester.dll
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\obj\Debug\net6.0\Harvester.pdb
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\obj\Debug\net6.0\Harvester.genruntimeconfig.cache
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\obj\Debug\net6.0\ref\Harvester.dll
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Content\combine harvester.xnb
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Content\Farmer.xnb
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Content\grim reaper.xnb
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Content\tomato.xnb
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Content\vampire.xnb
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Content\field.xnb
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Content\fieldpng.xnb
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Content\screen text.xnb
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Content\combine harvester left.xnb
+C:\Users\nathan\Documents\Ludum dare 52\Harvester\Harvester\bin\Debug\net6.0\Content\game over.xnb

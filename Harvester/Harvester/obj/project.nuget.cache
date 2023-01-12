@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "VwQDFQFxJ29gcbsQOWVDKhqeTmn+uWBHz5gQTbg/M8/aSWUoxsHh0Y7GBDuRmuP7aBLtvvADFsrmUjAAnQDj+g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\nathan\\Documents\\Ludum dare 52\\Harvester\\Harvester\\Harvester.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nathan\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\nathan\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
+  ],
+  "logs": []
+}
