@@ -1,5 +1,8 @@
 # Ludum-dare-52
-Harvester game for ludum dare 52, theme - harvest
+- Harvester game for ludum dare 52, theme - harvest.
+- ludum dare page - https://ldjam.com/events/ludum-dare/52/harvester-4
+
+![alt text](https://github.com/nvarughese/Ludum-dare-52/blob/main/Screenshot.PNG)
 
 ## How to run
 double click on Harvester/Harvester/bin/Debug/net6.0/Harvester.exe.
