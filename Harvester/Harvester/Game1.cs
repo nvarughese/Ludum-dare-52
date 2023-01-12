@@ -3,17 +3,30 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Harvester.Sprites;
+using System.Collections.Generic;
 
 namespace Harvester
 {
     public class Game1 : Game
     {
        
+        // Textures
         Texture2D farmerTexture;
+        Texture2D grimTexture;
+        Texture2D vampireTexture;
+        
+        Texture2D harvesterRightTexture;
+        Texture2D harvesterLeftTexture;
+        Texture2D tomatoTexture;
+        Texture2D fieldTexture;
+
+        
+
+
         Vector2 farmerPosition;
         float farmerSpeed;
         float farmerHealth;
-        Texture2D grimTexture;
         Vector2 grim1Position;
         Vector2 grim1Direction;
         Vector2 grim2Position;
@@ -23,13 +36,8 @@ namespace Harvester
         float grimDamage;
         float grimDampening;
         int grimStopBuffer;
-        Texture2D vampireTexture;
-        Vector2 vampirePosition;
-        Vector2 vampireDirection;
         float vampireSpeed;
         float vampireDamage;
-        Texture2D harvesterRightTexture;
-        Texture2D harvesterLeftTexture;
         Vector2 harvester1Position;
         Vector2 harvester2Position;
         bool harvester1GoingRight;
@@ -37,12 +45,10 @@ namespace Harvester
         float harvester1Speed;
         float harvester2Speed;
         float harvesterDamage;
-        Texture2D tomatoTexture;
         Vector2 tomato1Position;
         Vector2 tomato2Position;
         Vector2 tomato3Position;
         float tomatoHeal;
-        Texture2D fieldTexture;
         Vector2 fieldStretch;
         SpriteFont font;
         SpriteFont gameoverFont;
@@ -51,9 +57,14 @@ namespace Harvester
         int score;
         float speedMultiplier;
 
-
+        private List<Sprite> _sprites;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        
+
+        public static int ScreenWidth = 1280;
+        public static int ScreenHeight = 720;
 
         public Game1()
         {
@@ -66,11 +77,17 @@ namespace Harvester
         {
 
             // TODO: Add your initialization logic here
-            _graphics.PreferredBackBufferWidth = 1280;
-            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.PreferredBackBufferWidth = ScreenWidth;
+            _graphics.PreferredBackBufferHeight = ScreenHeight;
+            this.Window.AllowUserResizing = false;
+            this.Window.Title = "Harvester";
+
             _graphics.ApplyChanges();
 
-            this.ResetVariables();
+           
+
+
+            
 
             base.Initialize();
         }
@@ -90,9 +107,13 @@ namespace Harvester
             grimDampening = (float)0.97;
             grimDamage = 400;
             grimStopBuffer = 7;
-            vampireDamage = 200;
-            vampireDirection = new Vector2(0, 0);
-            vampirePosition = new Vector2(_graphics.PreferredBackBufferWidth * 3 / 5, _graphics.PreferredBackBufferHeight * 1 / 4);
+
+            
+            foreach (Sprite sprite in _sprites)
+            {
+                sprite.Reset();
+            }
+
             harvester1Position = new Vector2(_graphics.PreferredBackBufferWidth * 2 / 5, _graphics.PreferredBackBufferHeight * 1 / 3);
             harvester2Position = new Vector2(_graphics.PreferredBackBufferWidth * 4 / 5, _graphics.PreferredBackBufferHeight * 2 / 3);
             harvester1GoingRight = true;
@@ -108,7 +129,6 @@ namespace Harvester
             gameover = false;
             score = 0;
             speedMultiplier = 1;
-            vampireSpeed = 100;
 
         }
 
@@ -124,11 +144,19 @@ namespace Harvester
             harvesterLeftTexture = Content.Load<Texture2D>("combine harvester left");
             tomatoTexture = Content.Load<Texture2D>("tomato");
             fieldTexture = Content.Load<Texture2D>("field");
-            Debug.WriteLine("printing widths: " + _graphics.PreferredBackBufferWidth.ToString() + ", " + fieldTexture.Width.ToString());
-            fieldStretch = new Vector2((float)_graphics.PreferredBackBufferWidth / (float)fieldTexture.Width,
-                                       (float)_graphics.PreferredBackBufferHeight / (float)fieldTexture.Height);
+            fieldStretch = new Vector2((float)ScreenWidth / (float)fieldTexture.Width,
+                                       (float)ScreenHeight / (float)fieldTexture.Height);
             font = Content.Load<SpriteFont>("screen text");
             gameoverFont = Content.Load<SpriteFont>("game over");
+
+            // Sprite objects
+            Vampire vampire = new Vampire(vampireTexture, ScreenWidth, ScreenHeight);
+
+            _sprites = new List<Sprite>();
+            _sprites.Add(vampire);
+
+            ResetVariables();
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -251,11 +279,7 @@ namespace Harvester
                 grim3Direction.X = -Math.Abs(grim3Direction.X);
             }
 
-            // move vampire
-            vampireDirection.X = vampirePosition.X < farmerPosition.X ? 1 : -1;
-            vampireDirection.Y = vampirePosition.Y < farmerPosition.Y ? 1 : -1;
-            vampirePosition.X += vampireDirection.X * speedMultiplier * (float)gameTime.ElapsedGameTime.TotalSeconds * vampireSpeed;
-            vampirePosition.Y += vampireDirection.Y * speedMultiplier * (float)gameTime.ElapsedGameTime.TotalSeconds * vampireSpeed; ;
+            
 
             // move harvesters
             harvester1Position.X += harvester1GoingRight ? harvester1Speed * speedMultiplier : -harvester1Speed * speedMultiplier;
@@ -286,7 +310,7 @@ namespace Harvester
             Rectangle grim1Rect = new Rectangle((int)grim1Position.X, (int)grim1Position.Y, grimTexture.Width, grimTexture.Height);
             Rectangle grim2Rect = new Rectangle((int)grim2Position.X, (int)grim2Position.Y, grimTexture.Width, grimTexture.Height);
             Rectangle grim3Rect = new Rectangle((int)grim3Position.X, (int)grim3Position.Y, grimTexture.Width, grimTexture.Height);
-            Rectangle vampireRect = new Rectangle((int)vampirePosition.X, (int)vampirePosition.Y, vampireTexture.Width, vampireTexture.Height);
+            //Rectangle vampireRect = new Rectangle((int)vampire._position.X, (int)vampire._position.Y, vampireTexture.Width, vampireTexture.Height);
             Rectangle tomato1Rect = new Rectangle((int)tomato1Position.X, (int)tomato1Position.Y, tomatoTexture.Width, tomatoTexture.Height);
             Rectangle tomato2Rect = new Rectangle((int)tomato2Position.X, (int)tomato2Position.Y, tomatoTexture.Width, tomatoTexture.Height);
             Rectangle tomato3Rect = new Rectangle((int)tomato3Position.X, (int)tomato3Position.Y, tomatoTexture.Width, tomatoTexture.Height);
@@ -301,9 +325,9 @@ namespace Harvester
             if (farmerRect.Intersects(grim3Rect)){
                 farmerHealth -= (float)gameTime.ElapsedGameTime.TotalSeconds * grimDamage;
             }
-            if (farmerRect.Intersects(vampireRect)){
+            /*if (farmerRect.Intersects(vampireRect)){
                 farmerHealth -= (float)gameTime.ElapsedGameTime.TotalSeconds * vampireDamage;
-            }
+            }*/
             if (farmerRect.Intersects(harvester1Rect)){
                 farmerHealth -= (float)gameTime.ElapsedGameTime.TotalSeconds * harvesterDamage;
             }
@@ -330,11 +354,18 @@ namespace Harvester
                 Debug.WriteLine("tomato position: " + tomato3Position.X.ToString() + ", " + tomato3Position.Y.ToString());
             }
 
+            foreach (Sprite sprite in _sprites)
+            {
+                sprite.Update(gameTime, _sprites, speedMultiplier);
+            }
+
             if (!gameover){
                 score += (int)((float)gameTime.ElapsedGameTime.TotalSeconds * 1000);
             }
             speedMultiplier += ((float)gameTime.ElapsedGameTime.TotalSeconds / 20);
             screenText = "Farmer Health: " + ((int)farmerHealth).ToString() + "  score: " + score.ToString();
+
+            
 
             if (farmerHealth < 0) { gameover = true; }
             if (kstate.IsKeyDown(Keys.Space) && gameover)
@@ -356,7 +387,7 @@ namespace Harvester
             _spriteBatch.Draw(grimTexture, grim1Position, null, Color.White, 0f, new Vector2(grimTexture.Width / 2, grimTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             _spriteBatch.Draw(grimTexture, grim2Position, null, Color.White, 0f, new Vector2(grimTexture.Width / 2, grimTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             _spriteBatch.Draw(grimTexture, grim3Position, null, Color.White, 0f, new Vector2(grimTexture.Width / 2, grimTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
-            _spriteBatch.Draw(vampireTexture, vampirePosition, null, Color.White, 0f, new Vector2(vampireTexture.Width / 2, vampireTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
+            //_spriteBatch.Draw(vampireTexture, vampirePosition, null, Color.White, 0f, new Vector2(vampireTexture.Width / 2, vampireTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             if (harvester1GoingRight){
                 _spriteBatch.Draw(harvesterRightTexture, harvester1Position, null, Color.White, 0f, new Vector2(harvesterRightTexture.Width / 2, harvesterRightTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             } else {
@@ -376,6 +407,10 @@ namespace Harvester
             if (farmerHealth <= 0) {
                 _spriteBatch.DrawString(gameoverFont, "GAME OVER", new Vector2(_graphics.PreferredBackBufferWidth * 1 / 5, _graphics.PreferredBackBufferHeight * 1 / 4), Color.Red);
                 _spriteBatch.DrawString(gameoverFont, "press space", new Vector2(_graphics.PreferredBackBufferWidth * 1 / 4, _graphics.PreferredBackBufferHeight * 2 / 4), Color.Red);
+            }
+            foreach(Sprite sprite in _sprites)
+            {
+                sprite.Draw(_spriteBatch);
             }
             _spriteBatch.End();
 
