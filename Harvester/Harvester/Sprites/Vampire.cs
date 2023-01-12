@@ -32,11 +32,6 @@ namespace Harvester.Sprites
                     farmerPosition.X = sprite._position.X;
                     farmerPosition.Y = sprite._position.Y;
                 }
-                else
-                {
-                    //return;
-                    //throw new Exception("Vampire has not access to farmer sprite");
-                }
             }
             _direction.X = _position.X < farmerPosition.X ? 1 : -1;
             _direction.Y = _position.Y < farmerPosition.Y ? 1 : -1;

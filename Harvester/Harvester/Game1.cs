@@ -15,29 +15,18 @@ namespace Harvester
         Texture2D farmerTexture;
         Texture2D grimTexture;
         Texture2D vampireTexture;
-        
         Texture2D harvesterRightTexture;
         Texture2D harvesterLeftTexture;
         Texture2D tomatoTexture;
         Texture2D fieldTexture;
 
-        
 
 
-        Vector2 farmerPosition;
-        float farmerSpeed;
+
         float farmerHealth;
-        Vector2 grim1Position;
-        Vector2 grim1Direction;
-        Vector2 grim2Position;
-        Vector2 grim2Direction;
-        Vector2 grim3Position;
-        Vector2 grim3Direction;
-        float grimDamage;
-        float grimDampening;
+
+        
         int grimStopBuffer;
-        float vampireSpeed;
-        float vampireDamage;
         Vector2 harvester1Position;
         Vector2 harvester2Position;
         bool harvester1GoingRight;
@@ -94,26 +83,11 @@ namespace Harvester
 
         void ResetVariables()
         {
-            farmerPosition = new Vector2(_graphics.PreferredBackBufferWidth / 2,
-                _graphics.PreferredBackBufferHeight / 2);
-            farmerSpeed = 400;
-            farmerHealth = 1000;
-            grim1Position = new Vector2(400, 400);
-            grim1Direction = new Vector2(0, 0);
-            grim2Position = new Vector2(200, 500);
-            grim2Direction = new Vector2(0, 0);
-            grim3Position = new Vector2(800, 200);
-            grim3Direction = new Vector2(0, 0);
-            grimDampening = (float)0.97;
-            grimDamage = 400;
-            grimStopBuffer = 7;
+            
+            
+
 
             
-            foreach (Sprite sprite in _sprites)
-            {
-                sprite.Reset();
-            }
-
             harvester1Position = new Vector2(_graphics.PreferredBackBufferWidth * 2 / 5, _graphics.PreferredBackBufferHeight * 1 / 3);
             harvester2Position = new Vector2(_graphics.PreferredBackBufferWidth * 4 / 5, _graphics.PreferredBackBufferHeight * 2 / 3);
             harvester1GoingRight = true;
@@ -125,9 +99,11 @@ namespace Harvester
             tomato2Position = new Vector2(_graphics.PreferredBackBufferWidth * 3 / 8, _graphics.PreferredBackBufferHeight * 5 / 8);
             tomato3Position = new Vector2(_graphics.PreferredBackBufferWidth * 7 / 8, _graphics.PreferredBackBufferHeight * 6 / 8);
             tomatoHeal = 100;
-            screenText = "Farmer Health: " + ((int)farmerHealth).ToString();
-            gameover = false;
             score = 0;
+            // should probably be inside farmer but easier to have it outside
+            farmerHealth = 1000;
+            gameover = false;
+            
             speedMultiplier = 1;
 
         }
@@ -151,9 +127,19 @@ namespace Harvester
 
             // Sprite objects
             Vampire vampire = new Vampire(vampireTexture, ScreenWidth, ScreenHeight);
+            Farmer farmer = new Farmer(farmerTexture, ScreenWidth, ScreenHeight);
+            Grim grim1 = new Grim(grimTexture, ScreenWidth, ScreenHeight);
+            Grim grim2 = new Grim(grimTexture, ScreenWidth, ScreenHeight);
+            Grim grim3 = new Grim(grimTexture, ScreenWidth, ScreenHeight);
+            Grim grim4 = new Grim(grimTexture, ScreenWidth, ScreenHeight);
 
             _sprites = new List<Sprite>();
             _sprites.Add(vampire);
+            _sprites.Add(farmer);
+            _sprites.Add(grim1);
+            _sprites.Add(grim2);
+            _sprites.Add(grim3);
+            _sprites.Add(grim4);
 
             ResetVariables();
 
@@ -167,6 +153,7 @@ namespace Harvester
             // TODO: Add your update logic here
             var kstate = Keyboard.GetState();
 
+            /*
             // move the farmer using the arrow keys
             if (kstate.IsKeyDown(Keys.Up)){
                 farmerPosition.Y -= (float)gameTime.ElapsedGameTime.TotalSeconds * farmerSpeed;}
@@ -186,9 +173,11 @@ namespace Harvester
                 farmerPosition.X = farmerTexture.Width / 2;}
             else if (farmerPosition.X > _graphics.PreferredBackBufferWidth - farmerTexture.Width / 2){
                 farmerPosition.X = _graphics.PreferredBackBufferWidth - farmerTexture.Width / 2;}
+            */
 
             // should be done with classes but didn't have time
             // move grim1
+            /*
             Random rand = new Random();
             grim1Direction.X += rand.Next(-5, 6);
             grim1Direction.Y += rand.Next(-5, 6);
@@ -213,71 +202,9 @@ namespace Harvester
             {   grim1Position.X = _graphics.PreferredBackBufferWidth - grimTexture.Width / 2;
                 grim1Direction.X = -Math.Abs(grim1Direction.X);
             }
+            */
 
-            // move grim2
-            grim2Direction.X += rand.Next(-5, 6);
-            grim2Direction.Y += rand.Next(-5, 6);
-            grim2Direction.X = (int)(grim2Direction.X * grimDampening);
-            grim2Direction.Y = (int)(grim2Direction.Y * grimDampening);
-            int direction_x2 = Math.Abs(grim2Direction.X) <= grimStopBuffer ? 0 : (int)grim2Direction.X;
-            grim2Position.X += (direction_x2 * speedMultiplier);
-            int direction_y2 = Math.Abs(grim2Direction.Y) <= grimStopBuffer ? 0 : (int)grim2Direction.Y;
-            grim2Position.Y += (direction_y2 * speedMultiplier);
-
-            // keep grim within the screen and bounce off walls
-            if (grim2Position.Y < grimTexture.Height / 2)
-            {
-                grim2Position.Y = grimTexture.Height / 2;
-                grim2Direction.Y = Math.Abs(grim2Direction.Y);
-            }
-            else if (grim2Position.Y > _graphics.PreferredBackBufferHeight - grimTexture.Height / 2)
-            {
-                grim2Position.Y = _graphics.PreferredBackBufferHeight - grimTexture.Height / 2;
-                grim2Direction.Y = -Math.Abs(grim2Direction.Y);
-            }
-            if (grim2Position.X < grimTexture.Width / 2)
-            {
-                grim2Position.X = grimTexture.Width / 2;
-                grim2Direction.X = Math.Abs(grim2Direction.X);
-            }
-            else if (grim2Position.X > _graphics.PreferredBackBufferWidth - grimTexture.Width / 2)
-            {
-                grim2Position.X = _graphics.PreferredBackBufferWidth - grimTexture.Width / 2;
-                grim2Direction.X = -Math.Abs(grim2Direction.X);
-            }
-
-
-            // move grim3
-            grim3Direction.X += rand.Next(-5, 6);
-            grim3Direction.Y += rand.Next(-5, 6);
-            grim3Direction.X = (int)(grim3Direction.X * grimDampening);
-            grim3Direction.Y = (int)(grim3Direction.Y * grimDampening);
-            int direction_x3 = Math.Abs(grim3Direction.X) <= grimStopBuffer ? 0 : (int)grim3Direction.X;
-            grim3Position.X += (direction_x3 * speedMultiplier);
-            int direction_y3 = Math.Abs(grim3Direction.Y) <= grimStopBuffer ? 0 : (int)grim3Direction.Y;
-            grim3Position.Y += (direction_y3 * speedMultiplier);
-
-            // keep grim within the screen and bounce off walls
-            if (grim3Position.Y < grimTexture.Height / 2)
-            {
-                grim3Position.Y = grimTexture.Height / 2;
-                grim3Direction.Y = Math.Abs(grim3Direction.Y);
-            }
-            else if (grim3Position.Y > _graphics.PreferredBackBufferHeight - grimTexture.Height / 2)
-            {
-                grim3Position.Y = _graphics.PreferredBackBufferHeight - grimTexture.Height / 2;
-                grim3Direction.Y = -Math.Abs(grim3Direction.Y);
-            }
-            if (grim3Position.X < grimTexture.Width / 2)
-            {
-                grim3Position.X = grimTexture.Width / 2;
-                grim3Direction.X = Math.Abs(grim3Direction.X);
-            }
-            else if (grim3Position.X > _graphics.PreferredBackBufferWidth - grimTexture.Width / 2)
-            {
-                grim3Position.X = _graphics.PreferredBackBufferWidth - grimTexture.Width / 2;
-                grim3Direction.X = -Math.Abs(grim3Direction.X);
-            }
+            
 
             
 
@@ -305,6 +232,9 @@ namespace Harvester
                 harvester2GoingRight = false;
             }
 
+            /*
+             * take out all collision stuff for the moment, can put back in later
+
             // consider collisions and update farmer health
             Rectangle farmerRect = new Rectangle((int)farmerPosition.X, (int)farmerPosition.Y, farmerTexture.Width, farmerTexture.Height);
             Rectangle grim1Rect = new Rectangle((int)grim1Position.X, (int)grim1Position.Y, grimTexture.Width, grimTexture.Height);
@@ -325,9 +255,9 @@ namespace Harvester
             if (farmerRect.Intersects(grim3Rect)){
                 farmerHealth -= (float)gameTime.ElapsedGameTime.TotalSeconds * grimDamage;
             }
-            /*if (farmerRect.Intersects(vampireRect)){
+            if (farmerRect.Intersects(vampireRect)){
                 farmerHealth -= (float)gameTime.ElapsedGameTime.TotalSeconds * vampireDamage;
-            }*/
+            }
             if (farmerRect.Intersects(harvester1Rect)){
                 farmerHealth -= (float)gameTime.ElapsedGameTime.TotalSeconds * harvesterDamage;
             }
@@ -353,6 +283,7 @@ namespace Harvester
                 tomato3Position.Y = rand.Next(tomatoTexture.Height / 2, _graphics.PreferredBackBufferHeight - tomatoTexture.Height / 2);
                 Debug.WriteLine("tomato position: " + tomato3Position.X.ToString() + ", " + tomato3Position.Y.ToString());
             }
+            */
 
             foreach (Sprite sprite in _sprites)
             {
@@ -363,6 +294,7 @@ namespace Harvester
                 score += (int)((float)gameTime.ElapsedGameTime.TotalSeconds * 1000);
             }
             speedMultiplier += ((float)gameTime.ElapsedGameTime.TotalSeconds / 20);
+
             screenText = "Farmer Health: " + ((int)farmerHealth).ToString() + "  score: " + score.ToString();
 
             
@@ -384,9 +316,9 @@ namespace Harvester
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
             _spriteBatch.Draw(fieldTexture, Vector2.Zero, null, Color.White, 0f, Vector2.Zero, fieldStretch, SpriteEffects.None, 0f);
-            _spriteBatch.Draw(grimTexture, grim1Position, null, Color.White, 0f, new Vector2(grimTexture.Width / 2, grimTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
-            _spriteBatch.Draw(grimTexture, grim2Position, null, Color.White, 0f, new Vector2(grimTexture.Width / 2, grimTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
-            _spriteBatch.Draw(grimTexture, grim3Position, null, Color.White, 0f, new Vector2(grimTexture.Width / 2, grimTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
+            //_spriteBatch.Draw(grimTexture, grim1Position, null, Color.White, 0f, new Vector2(grimTexture.Width / 2, grimTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
+            //_spriteBatch.Draw(grimTexture, grim2Position, null, Color.White, 0f, new Vector2(grimTexture.Width / 2, grimTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
+            //_spriteBatch.Draw(grimTexture, grim3Position, null, Color.White, 0f, new Vector2(grimTexture.Width / 2, grimTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             //_spriteBatch.Draw(vampireTexture, vampirePosition, null, Color.White, 0f, new Vector2(vampireTexture.Width / 2, vampireTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             if (harvester1GoingRight){
                 _spriteBatch.Draw(harvesterRightTexture, harvester1Position, null, Color.White, 0f, new Vector2(harvesterRightTexture.Width / 2, harvesterRightTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
@@ -402,7 +334,7 @@ namespace Harvester
             _spriteBatch.Draw(tomatoTexture, tomato1Position, null, Color.White, 0f, new Vector2(tomatoTexture.Width / 2, tomatoTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             _spriteBatch.Draw(tomatoTexture, tomato2Position, null, Color.White, 0f, new Vector2(tomatoTexture.Width / 2, tomatoTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             _spriteBatch.Draw(tomatoTexture, tomato3Position, null, Color.White, 0f, new Vector2(tomatoTexture.Width / 2, tomatoTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
-            _spriteBatch.Draw(farmerTexture, farmerPosition, null, Color.White, 0f, new Vector2(farmerTexture.Width / 2, farmerTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
+            //_spriteBatch.Draw(farmerTexture, farmerPosition, null, Color.White, 0f, new Vector2(farmerTexture.Width / 2, farmerTexture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             _spriteBatch.DrawString(font, screenText, new Vector2(_graphics.PreferredBackBufferWidth * 1 / 5, 50), Color.Black);
             if (farmerHealth <= 0) {
                 _spriteBatch.DrawString(gameoverFont, "GAME OVER", new Vector2(_graphics.PreferredBackBufferWidth * 1 / 5, _graphics.PreferredBackBufferHeight * 1 / 4), Color.Red);
