@@ -15,6 +15,7 @@ namespace Harvester.Sprites
     {
         public Farmer(Texture2D texture, int screenWidth, int screenHeight) : base(texture, screenWidth, screenHeight)
         {
+            _type = SpriteType.Farmer;
             _speed = 400;
             Reset();
         }

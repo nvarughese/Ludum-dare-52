@@ -16,6 +16,7 @@ namespace Harvester.Sprites
         private int _grimStopBuffer;
         public Grim(Texture2D texture, int screenWidth, int screenHeight) : base(texture, screenWidth, screenHeight)
         {
+            _type = SpriteType.Grim;
             _collisionDamage = 400;
             _speed = 100;
             _grimDampening = (float)0.97;

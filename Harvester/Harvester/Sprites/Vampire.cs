@@ -16,6 +16,7 @@ namespace Harvester.Sprites
         
         public Vampire(Texture2D texture, int screenWidth, int screenHeight) : base(texture, screenWidth, screenHeight)
         {
+            _type = SpriteType.Vampire;
             _collisionDamage = 200;
             _speed = 100;
             Reset();

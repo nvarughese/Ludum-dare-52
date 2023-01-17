@@ -17,8 +17,8 @@ namespace Harvester.Sprites
 
 
         protected KeyboardState _currentKey;
-        
 
+        public SpriteType _type;
         public Vector2 _position;
         public Vector2 _direction;
         public float _speed = 0f;
