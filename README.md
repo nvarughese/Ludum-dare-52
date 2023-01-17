@@ -16,7 +16,7 @@ double click on Harvester/Harvester/bin/Debug/net6.0/Harvester.exe.
 Completed in one day for ludum dare 52, first attempt of using monogame
 
 ## Things I would add if I had more time
-- Refactor the code to use classes for the sprites.
+- Refactor the code to use classes for the sprites. - done
 - Add in an opening screen with click to play and controls.
 - Add in animations for the sprite.
 - Add in background music and music for getting hit, maybe make the music speed up.
